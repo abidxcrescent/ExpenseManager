@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.abid.expensetrackerapi.entity.Expense;
+import com.abid.expensetrackerapi.exceptions.ResourceNotFoundException;
 import com.abid.expensetrackerapi.repository.ExpenseRepository;
 
 @Service
@@ -30,7 +31,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 			return expense.get();
 		}
 		
-		throw new RuntimeException("Expense is not found for id "+id);
+		throw new ResourceNotFoundException("Expense is not found for the id "+id);
 	}
 
 	@Override

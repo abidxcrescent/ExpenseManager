@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.abid.expensetrackerapi.entity.Expense;
 import com.abid.expensetrackerapi.service.ExpenseService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 public class ExpenseController {
@@ -33,10 +35,10 @@ public class ExpenseController {
 	}
 	
 	
-	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+
 	@GetMapping("/expenses/{id}")
 	public Expense getExpensesUsingId(@PathVariable("id") Long id) {
-		return expenseService.getExpenseById(id);
+		return  expenseService.getExpenseById(id);
 	}
 	
 	
@@ -48,7 +50,7 @@ public class ExpenseController {
 	
 	@ResponseStatus(value = HttpStatus.CREATED)
 	@PostMapping("/expenses")
-	public Expense saveExpenseDetails(@RequestBody Expense expense) {
+	public Expense saveExpenseDetails(@Valid @RequestBody Expense expense) {
 		return expenseService.saveExpenseDetails(expense);
 	}
 	
